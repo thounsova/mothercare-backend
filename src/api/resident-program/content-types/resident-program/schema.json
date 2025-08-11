@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "resident_programs",
+  "info": {
+    "singularName": "resident-program",
+    "pluralName": "resident-programs",
+    "displayName": "Resident Program"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "resident": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::resident.resident",
+      "inversedBy": "resident_programs"
+    },
+    "programs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::program.program",
+      "mappedBy": "resident_program"
+    }
+  }
+}

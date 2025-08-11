@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "resident_fields",
+  "info": {
+    "singularName": "resident-field",
+    "pluralName": "resident-fields",
+    "displayName": "Resident_Field"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "activity_date": {
+      "type": "date"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "pdf_url": {
+      "type": "uid"
+    },
+    "program": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::program.program",
+      "inversedBy": "resident_fields"
+    }
+  }
+}

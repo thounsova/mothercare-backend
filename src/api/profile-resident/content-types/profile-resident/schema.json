@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "profile_residents",
+  "info": {
+    "singularName": "profile-resident",
+    "pluralName": "profile-residents",
+    "displayName": "Profile_Resident"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Mother_name": {
+      "type": "string"
+    },
+    "Father_name": {
+      "type": "string"
+    },
+    "date_of_birth": {
+      "type": "date"
+    },
+    "date_of_registration": {
+      "type": "date"
+    },
+    "Comments": {
+      "type": "string"
+    },
+    "Nick_name": {
+      "type": "string"
+    },
+    "Address_parents": {
+      "type": "string"
+    },
+    "Address_kinds": {
+      "type": "string"
+    },
+    "number": {
+      "type": "biginteger"
+    },
+    "resident": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::resident.resident",
+      "mappedBy": "profile_resident"
+    }
+  }
+}

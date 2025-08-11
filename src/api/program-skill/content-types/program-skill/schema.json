@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "program_skills",
+  "info": {
+    "singularName": "program-skill",
+    "pluralName": "program-skills",
+    "displayName": "Program Skill"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "program": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::program.program",
+      "inversedBy": "program_skills"
+    }
+  }
+}
