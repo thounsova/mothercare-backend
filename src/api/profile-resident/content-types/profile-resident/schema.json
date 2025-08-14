@@ -25,16 +25,19 @@
       ]
     },
     "Mother_name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "Father_name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "date_of_birth": {
       "type": "date"
     },
     "date_of_registration": {
-      "type": "date"
+      "type": "date",
+      "required": true
     },
     "Comments": {
       "type": "string"
@@ -51,10 +54,34 @@
     "number": {
       "type": "biginteger"
     },
-    "resident": {
+    "branch": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::resident.resident",
+      "relation": "manyToOne",
+      "target": "api::branch.branch",
+      "inversedBy": "profile_residents"
+    },
+    "assessment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::assessment.assessment",
+      "inversedBy": "profile_residents"
+    },
+    "resident_programs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::resident-program.resident-program",
+      "mappedBy": "profile_resident"
+    },
+    "resident_relatives": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::resident-relative.resident-relative",
+      "mappedBy": "profile_resident"
+    },
+    "reports": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::report.report",
       "mappedBy": "profile_resident"
     }
   }

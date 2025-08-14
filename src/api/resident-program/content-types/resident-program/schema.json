@@ -11,17 +11,17 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "resident": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::resident.resident",
-      "inversedBy": "resident_programs"
-    },
     "programs": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::program.program",
       "mappedBy": "resident_program"
+    },
+    "profile_resident": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::profile-resident.profile-resident",
+      "inversedBy": "resident_programs"
     }
   }
 }

@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "branches",
+  "info": {
+    "singularName": "branch",
+    "pluralName": "branches",
+    "displayName": "Branch"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "users_permissions_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "branch"
+    },
+    "profile_residents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::profile-resident.profile-resident",
+      "mappedBy": "branch"
+    }
+  }
+}

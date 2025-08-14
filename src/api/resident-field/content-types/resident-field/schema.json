@@ -14,17 +14,29 @@
     "activity_date": {
       "type": "date"
     },
-    "comment": {
-      "type": "string"
-    },
-    "pdf_url": {
-      "type": "uid"
-    },
     "program": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::program.program",
       "inversedBy": "resident_fields"
+    },
+    "activity_upload": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "comments": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
     }
   }
 }

@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "resident_relatives",
+  "info": {
+    "singularName": "resident-relative",
+    "pluralName": "resident-relatives",
+    "displayName": "resident_relative"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullname": {
+      "type": "string",
+      "required": true
+    },
+    "gender": {
+      "type": "string",
+      "required": true
+    },
+    "date_of_birth": {
+      "type": "date"
+    },
+    "profile_resident": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::profile-resident.profile-resident",
+      "inversedBy": "resident_relatives"
+    }
+  }
+}

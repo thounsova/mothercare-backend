@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "medical_informations",
+  "info": {
+    "singularName": "medical-information",
+    "pluralName": "medical-informations",
+    "displayName": "Medical_information"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Diagnosis": {
+      "type": "string"
+    },
+    "Medication": {
+      "type": "string"
+    },
+    "Doctor": {
+      "type": "string"
+    },
+    "date_of_check": {
+      "type": "date",
+      "required": true
+    },
+    "document": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "prescription": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

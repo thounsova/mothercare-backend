@@ -14,19 +14,6 @@
     "activity_name": {
       "type": "string"
     },
-    "activity_image": {
-      "type": "media",
-      "multiple": true,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "description": {
-      "type": "string"
-    },
     "program_skills": {
       "type": "relation",
       "relation": "oneToMany",
@@ -44,6 +31,13 @@
       "relation": "oneToMany",
       "target": "api::resident-field.resident-field",
       "mappedBy": "program"
+    },
+    "description": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
     }
   }
 }
