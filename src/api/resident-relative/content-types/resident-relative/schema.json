@@ -11,22 +11,32 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "fullname": {
+    "full_name": {
       "type": "string",
       "required": true
-    },
-    "gender": {
-      "type": "string",
-      "required": true
-    },
-    "date_of_birth": {
-      "type": "date"
     },
     "profile_resident": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::profile-resident.profile-resident",
       "inversedBy": "resident_relatives"
+    },
+    "gender": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Man",
+        "Woman"
+      ]
+    },
+    "resident_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::resident-typ.resident-typ",
+      "inversedBy": "resident_relatives"
+    },
+    "date": {
+      "type": "date"
     }
   }
 }

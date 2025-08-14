@@ -507,13 +507,21 @@ export interface ApiProfileResidentProfileResident
       true
     >;
     branch: Schema.Attribute.Relation<'manyToOne', 'api::branch.branch'>;
-    Comments: Schema.Attribute.String;
+    comments: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     date_of_birth: Schema.Attribute.Date;
     date_of_registration: Schema.Attribute.Date & Schema.Attribute.Required;
     Father_name: Schema.Attribute.String & Schema.Attribute.Required;
+    gender: Schema.Attribute.Enumeration<['Boy', 'Girl']> &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -776,9 +784,10 @@ export interface ApiResidentRelativeResidentRelative
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    date_of_birth: Schema.Attribute.Date;
-    fullname: Schema.Attribute.String & Schema.Attribute.Required;
-    gender: Schema.Attribute.String & Schema.Attribute.Required;
+    date: Schema.Attribute.Date;
+    full_name: Schema.Attribute.String & Schema.Attribute.Required;
+    gender: Schema.Attribute.Enumeration<['Man', 'Woman']> &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -790,6 +799,42 @@ export interface ApiResidentRelativeResidentRelative
       'api::profile-resident.profile-resident'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    resident_type: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::resident-typ.resident-typ'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiResidentTypResidentTyp extends Struct.CollectionTypeSchema {
+  collectionName: 'resident_typs';
+  info: {
+    displayName: 'resident_type';
+    pluralName: 'resident-typs';
+    singularName: 'resident-typ';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::resident-typ.resident-typ'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    resident_relatives: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::resident-relative.resident-relative'
+    >;
+    type: Schema.Attribute.Enumeration<['Educator', 'Parent']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1316,6 +1361,7 @@ declare module '@strapi/strapi' {
       'api::resident-field.resident-field': ApiResidentFieldResidentField;
       'api::resident-program.resident-program': ApiResidentProgramResidentProgram;
       'api::resident-relative.resident-relative': ApiResidentRelativeResidentRelative;
+      'api::resident-typ.resident-typ': ApiResidentTypResidentTyp;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -39,9 +39,6 @@
       "type": "date",
       "required": true
     },
-    "Comments": {
-      "type": "string"
-    },
     "Nick_name": {
       "type": "string"
     },
@@ -83,6 +80,21 @@
       "relation": "oneToMany",
       "target": "api::report.report",
       "mappedBy": "profile_resident"
+    },
+    "comments": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "gender": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Boy",
+        "Girl"
+      ]
     }
   }
 }

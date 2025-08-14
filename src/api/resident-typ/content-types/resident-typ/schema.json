@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "resident_typs",
+  "info": {
+    "singularName": "resident-typ",
+    "pluralName": "resident-typs",
+    "displayName": "resident_type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Educator",
+        "Parent"
+      ]
+    },
+    "resident_relatives": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::resident-relative.resident-relative",
+      "mappedBy": "resident_type"
+    }
+  }
+}
