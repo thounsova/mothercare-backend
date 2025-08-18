@@ -11,13 +11,13 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Diagnosis": {
+    "diagnosis": {
       "type": "string"
     },
-    "Medication": {
+    "medication": {
       "type": "string"
     },
-    "Doctor": {
+    "doctor": {
       "type": "string"
     },
     "date_of_check": {

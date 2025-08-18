@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-08-15T07:09:16.013Z"
+    "x-generation-date": "2025-08-18T15:07:27.860Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -8293,13 +8293,13 @@
                   "type": "string",
                   "format": "date"
                 },
-                "Nick_name": {
+                "nick_name": {
                   "type": "string"
                 },
-                "Address_parents": {
+                "address_parents": {
                   "type": "string"
                 },
-                "Address_kinds": {
+                "address_kinds": {
                   "type": "string"
                 },
                 "number": {
@@ -11042,13 +11042,13 @@
                             "type": "string",
                             "format": "date"
                           },
-                          "Nick_name": {
+                          "nick_name": {
                             "type": "string"
                           },
-                          "Address_parents": {
+                          "address_parents": {
                             "type": "string"
                           },
-                          "Address_kinds": {
+                          "address_kinds": {
                             "type": "string"
                           },
                           "number": {
@@ -12502,13 +12502,13 @@
             ],
             "type": "object",
             "properties": {
-              "Diagnosis": {
+              "diagnosis": {
                 "type": "string"
               },
-              "Medication": {
+              "medication": {
                 "type": "string"
               },
-              "Doctor": {
+              "doctor": {
                 "type": "string"
               },
               "date_of_check": {
@@ -12611,13 +12611,13 @@
           "documentId": {
             "type": "string"
           },
-          "Diagnosis": {
+          "diagnosis": {
             "type": "string"
           },
-          "Medication": {
+          "medication": {
             "type": "string"
           },
-          "Doctor": {
+          "doctor": {
             "type": "string"
           },
           "date_of_check": {
@@ -13405,13 +13405,13 @@
                 "documentId": {
                   "type": "string"
                 },
-                "Diagnosis": {
+                "diagnosis": {
                   "type": "string"
                 },
-                "Medication": {
+                "medication": {
                   "type": "string"
                 },
-                "Doctor": {
+                "doctor": {
                   "type": "string"
                 },
                 "date_of_check": {
@@ -13795,13 +13795,13 @@
                 "type": "string",
                 "format": "date"
               },
-              "Nick_name": {
+              "nick_name": {
                 "type": "string"
               },
-              "Address_parents": {
+              "address_parents": {
                 "type": "string"
               },
-              "Address_kinds": {
+              "address_kinds": {
                 "type": "string"
               },
               "number": {
@@ -14572,13 +14572,13 @@
             "type": "string",
             "format": "date"
           },
-          "Nick_name": {
+          "nick_name": {
             "type": "string"
           },
-          "Address_parents": {
+          "address_parents": {
             "type": "string"
           },
-          "Address_kinds": {
+          "address_kinds": {
             "type": "string"
           },
           "number": {
@@ -15020,13 +15020,13 @@
                       "type": "string",
                       "format": "date"
                     },
-                    "Nick_name": {
+                    "nick_name": {
                       "type": "string"
                     },
-                    "Address_parents": {
+                    "address_parents": {
                       "type": "string"
                     },
-                    "Address_kinds": {
+                    "address_kinds": {
                       "type": "string"
                     },
                     "number": {
@@ -17272,13 +17272,13 @@
                               "type": "string",
                               "format": "date"
                             },
-                            "Nick_name": {
+                            "nick_name": {
                               "type": "string"
                             },
-                            "Address_parents": {
+                            "address_parents": {
                               "type": "string"
                             },
-                            "Address_kinds": {
+                            "address_kinds": {
                               "type": "string"
                             },
                             "number": {
@@ -19868,13 +19868,13 @@
                         "type": "string",
                         "format": "date"
                       },
-                      "Nick_name": {
+                      "nick_name": {
                         "type": "string"
                       },
-                      "Address_parents": {
+                      "address_parents": {
                         "type": "string"
                       },
-                      "Address_kinds": {
+                      "address_kinds": {
                         "type": "string"
                       },
                       "number": {
@@ -23100,13 +23100,13 @@
                 "type": "string",
                 "format": "date"
               },
-              "Nick_name": {
+              "nick_name": {
                 "type": "string"
               },
-              "Address_parents": {
+              "address_parents": {
                 "type": "string"
               },
-              "Address_kinds": {
+              "address_kinds": {
                 "type": "string"
               },
               "number": {
@@ -25872,13 +25872,13 @@
                         "type": "string",
                         "format": "date"
                       },
-                      "Nick_name": {
+                      "nick_name": {
                         "type": "string"
                       },
-                      "Address_parents": {
+                      "address_parents": {
                         "type": "string"
                       },
-                      "Address_kinds": {
+                      "address_kinds": {
                         "type": "string"
                       },
                       "number": {
@@ -28391,13 +28391,13 @@
                           "type": "string",
                           "format": "date"
                         },
-                        "Nick_name": {
+                        "nick_name": {
                           "type": "string"
                         },
-                        "Address_parents": {
+                        "address_parents": {
                           "type": "string"
                         },
-                        "Address_kinds": {
+                        "address_kinds": {
                           "type": "string"
                         },
                         "number": {
@@ -30564,13 +30564,13 @@
                 "type": "string",
                 "format": "date"
               },
-              "Nick_name": {
+              "nick_name": {
                 "type": "string"
               },
-              "Address_parents": {
+              "address_parents": {
                 "type": "string"
               },
-              "Address_kinds": {
+              "address_kinds": {
                 "type": "string"
               },
               "number": {
@@ -32985,13 +32985,13 @@
                       "type": "string",
                       "format": "date"
                     },
-                    "Nick_name": {
+                    "nick_name": {
                       "type": "string"
                     },
-                    "Address_parents": {
+                    "address_parents": {
                       "type": "string"
                     },
-                    "Address_kinds": {
+                    "address_kinds": {
                       "type": "string"
                     },
                     "number": {

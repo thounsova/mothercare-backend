@@ -39,13 +39,13 @@
       "type": "date",
       "required": true
     },
-    "Nick_name": {
+    "nick_name": {
       "type": "string"
     },
-    "Address_parents": {
+    "address_parents": {
       "type": "string"
     },
-    "Address_kinds": {
+    "address_kinds": {
       "type": "string"
     },
     "number": {

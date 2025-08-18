@@ -460,8 +460,8 @@ export interface ApiMedicalInformationMedicalInformation
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     date_of_check: Schema.Attribute.Date & Schema.Attribute.Required;
-    Diagnosis: Schema.Attribute.String;
-    Doctor: Schema.Attribute.String;
+    diagnosis: Schema.Attribute.String;
+    doctor: Schema.Attribute.String;
     document: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -472,7 +472,7 @@ export interface ApiMedicalInformationMedicalInformation
       'api::medical-information.medical-information'
     > &
       Schema.Attribute.Private;
-    Medication: Schema.Attribute.String;
+    medication: Schema.Attribute.String;
     prescription: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -496,8 +496,8 @@ export interface ApiProfileResidentProfileResident
     draftAndPublish: true;
   };
   attributes: {
-    Address_kinds: Schema.Attribute.String;
-    Address_parents: Schema.Attribute.String;
+    address_kinds: Schema.Attribute.String;
+    address_parents: Schema.Attribute.String;
     assessment: Schema.Attribute.Relation<
       'manyToOne',
       'api::assessment.assessment'
@@ -530,7 +530,7 @@ export interface ApiProfileResidentProfileResident
       Schema.Attribute.Private;
     Mother_name: Schema.Attribute.String & Schema.Attribute.Required;
     name: Schema.Attribute.String;
-    Nick_name: Schema.Attribute.String;
+    nick_name: Schema.Attribute.String;
     number: Schema.Attribute.BigInteger;
     publishedAt: Schema.Attribute.DateTime;
     reports: Schema.Attribute.Relation<'oneToMany', 'api::report.report'>;
