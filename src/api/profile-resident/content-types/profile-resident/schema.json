@@ -95,6 +95,12 @@
         "videos",
         "audios"
       ]
+    },
+    "class": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::class.class",
+      "inversedBy": "profile_residents"
     }
   }
 }

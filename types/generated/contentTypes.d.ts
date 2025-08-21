@@ -444,6 +444,35 @@ export interface ApiBranchBranch extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiClassClass extends Struct.CollectionTypeSchema {
+  collectionName: 'classes';
+  info: {
+    displayName: 'Class';
+    pluralName: 'classes';
+    singularName: 'class';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::class.class'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    profile_residents: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::profile-resident.profile-resident'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMedicalInformationMedicalInformation
   extends Struct.CollectionTypeSchema {
   collectionName: 'medical_informations';
@@ -507,6 +536,7 @@ export interface ApiProfileResidentProfileResident
       true
     >;
     branch: Schema.Attribute.Relation<'manyToOne', 'api::branch.branch'>;
+    class: Schema.Attribute.Relation<'manyToOne', 'api::class.class'>;
     comments: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -1356,6 +1386,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::assessment.assessment': ApiAssessmentAssessment;
       'api::branch.branch': ApiBranchBranch;
+      'api::class.class': ApiClassClass;
       'api::medical-information.medical-information': ApiMedicalInformationMedicalInformation;
       'api::profile-resident.profile-resident': ApiProfileResidentProfileResident;
       'api::program-skill.program-skill': ApiProgramSkillProgramSkill;
