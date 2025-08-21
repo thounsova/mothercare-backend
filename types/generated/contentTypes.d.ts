@@ -1298,6 +1298,10 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
+    avatar: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     branch: Schema.Attribute.Relation<'manyToOne', 'api::branch.branch'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;

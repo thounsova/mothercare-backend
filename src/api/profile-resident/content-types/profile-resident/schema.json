@@ -14,16 +14,6 @@
     "name": {
       "type": "string"
     },
-    "avatar": {
-      "type": "media",
-      "multiple": true,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "Mother_name": {
       "type": "string",
       "required": true
@@ -94,6 +84,16 @@
       "enum": [
         "Boy",
         "Girl"
+      ]
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
       ]
     }
   }
