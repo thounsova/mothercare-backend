@@ -43,6 +43,12 @@
         "videos",
         "audios"
       ]
+    },
+    "profile_resident": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::profile-resident.profile-resident",
+      "inversedBy": "medical_informations"
     }
   }
 }

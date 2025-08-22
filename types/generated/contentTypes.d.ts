@@ -506,6 +506,10 @@ export interface ApiMedicalInformationMedicalInformation
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
+    profile_resident: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::profile-resident.profile-resident'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -558,6 +562,10 @@ export interface ApiProfileResidentProfileResident
       'api::profile-resident.profile-resident'
     > &
       Schema.Attribute.Private;
+    medical_informations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::medical-information.medical-information'
+    >;
     Mother_name: Schema.Attribute.String & Schema.Attribute.Required;
     name: Schema.Attribute.String;
     nick_name: Schema.Attribute.String;

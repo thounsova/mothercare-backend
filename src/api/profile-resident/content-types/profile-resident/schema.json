@@ -101,6 +101,12 @@
       "relation": "manyToOne",
       "target": "api::class.class",
       "inversedBy": "profile_residents"
+    },
+    "medical_informations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::medical-information.medical-information",
+      "mappedBy": "profile_resident"
     }
   }
 }
