@@ -14,11 +14,11 @@
     "activity_date": {
       "type": "date"
     },
-    "program": {
+    "program_skill": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::program.program",
-      "inversedBy": "resident_fields"
+      "relation": "oneToOne",
+      "target": "api::program-skill.program-skill",
+      "mappedBy": "resident_field"
     },
     "activity_upload": {
       "type": "media",
@@ -37,6 +37,17 @@
       "options": {
         "preset": "defaultHtml"
       }
+    },
+    "profile_resident": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profile-resident.profile-resident",
+      "mappedBy": "resident_field"
+    },
+    "program_status": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::program-status.program-status"
     }
   }
 }

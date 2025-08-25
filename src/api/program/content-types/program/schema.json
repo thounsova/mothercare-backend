@@ -20,18 +20,6 @@
       "target": "api::program-skill.program-skill",
       "mappedBy": "program"
     },
-    "resident_program": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::resident-program.resident-program",
-      "inversedBy": "programs"
-    },
-    "resident_fields": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::resident-field.resident-field",
-      "mappedBy": "program"
-    },
     "description": {
       "type": "customField",
       "customField": "plugin::ckeditor5.CKEditor",

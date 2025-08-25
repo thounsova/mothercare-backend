@@ -29,6 +29,24 @@
     },
     "name": {
       "type": "string"
+    },
+    "program_statuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::program-status.program-status",
+      "mappedBy": "program_skill"
+    },
+    "resident_program": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::resident-program.resident-program",
+      "inversedBy": "program_skills"
+    },
+    "resident_field": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::resident-field.resident-field",
+      "inversedBy": "program_skill"
     }
   }
 }

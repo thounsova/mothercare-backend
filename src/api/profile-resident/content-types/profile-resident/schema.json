@@ -171,6 +171,12 @@
       "relation": "oneToMany",
       "target": "api::medical-information.medical-information",
       "mappedBy": "profile_resident"
+    },
+    "resident_field": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::resident-field.resident-field",
+      "inversedBy": "profile_resident"
     }
   }
 }

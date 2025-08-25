@@ -11,9 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
-      "type": "string"
-    },
     "symbol_image": {
       "type": "media",
       "multiple": false,
@@ -27,6 +24,22 @@
     "score": {
       "type": "integer",
       "required": true
+    },
+    "program_skill": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::program-skill.program-skill",
+      "inversedBy": "program_statuses"
+    },
+    "comments": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "name": {
+      "type": "string"
     }
   }
 }

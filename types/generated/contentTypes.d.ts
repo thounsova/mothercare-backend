@@ -674,6 +674,10 @@ export interface ApiProfileResidentProfileResident
       }>;
     publishedAt: Schema.Attribute.DateTime;
     reports: Schema.Attribute.Relation<'oneToMany', 'api::report.report'>;
+    resident_field: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::resident-field.resident-field'
+    >;
     resident_programs: Schema.Attribute.Relation<
       'oneToMany',
       'api::resident-program.resident-program'
@@ -712,7 +716,19 @@ export interface ApiProgramSkillProgramSkill
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     program: Schema.Attribute.Relation<'manyToOne', 'api::program.program'>;
+    program_statuses: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::program-status.program-status'
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    resident_field: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::resident-field.resident-field'
+    >;
+    resident_program: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::resident-program.resident-program'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -731,6 +747,13 @@ export interface ApiProgramStatusProgramStatus
     draftAndPublish: true;
   };
   attributes: {
+    comments: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -741,6 +764,10 @@ export interface ApiProgramStatusProgramStatus
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
+    program_skill: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::program-skill.program-skill'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     score: Schema.Attribute.Integer & Schema.Attribute.Required;
     symbol_image: Schema.Attribute.Media<
@@ -785,14 +812,6 @@ export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
       'api::program-skill.program-skill'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    resident_fields: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::resident-field.resident-field'
-    >;
-    resident_program: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::resident-program.resident-program'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -835,6 +854,46 @@ export interface ApiReportReport extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiResidentAccessResidentAccess
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'resident_accesses';
+  info: {
+    displayName: 'Resident Access';
+    pluralName: 'resident-accesses';
+    singularName: 'resident-access';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::resident-access.resident-access'
+    >;
+    profile_residents: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::profile-resident.profile-resident'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiResidentFieldResidentField
   extends Struct.CollectionTypeSchema {
   collectionName: 'resident_fields';
@@ -868,7 +927,18 @@ export interface ApiResidentFieldResidentField
       'api::resident-field.resident-field'
     > &
       Schema.Attribute.Private;
-    program: Schema.Attribute.Relation<'manyToOne', 'api::program.program'>;
+    profile_resident: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::profile-resident.profile-resident'
+    >;
+    program_skill: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::program-skill.program-skill'
+    >;
+    program_status: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::program-status.program-status'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -901,7 +971,10 @@ export interface ApiResidentProgramResidentProgram
       'manyToOne',
       'api::profile-resident.profile-resident'
     >;
-    programs: Schema.Attribute.Relation<'oneToMany', 'api::program.program'>;
+    program_skills: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::program-skill.program-skill'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1503,6 +1576,7 @@ declare module '@strapi/strapi' {
       'api::program-status.program-status': ApiProgramStatusProgramStatus;
       'api::program.program': ApiProgramProgram;
       'api::report.report': ApiReportReport;
+      'api::resident-access.resident-access': ApiResidentAccessResidentAccess;
       'api::resident-field.resident-field': ApiResidentFieldResidentField;
       'api::resident-program.resident-program': ApiResidentProgramResidentProgram;
       'api::resident-relative.resident-relative': ApiResidentRelativeResidentRelative;

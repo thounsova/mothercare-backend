@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "resident_accesses",
+  "info": {
+    "singularName": "resident-access",
+    "pluralName": "resident-accesses",
+    "displayName": "Resident Access"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "profile_residents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::profile-resident.profile-resident"
+    }
+  }
+}
