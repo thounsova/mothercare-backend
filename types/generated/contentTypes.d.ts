@@ -484,28 +484,63 @@ export interface ApiMedicalInformationMedicalInformation
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    date_of_check: Schema.Attribute.Date & Schema.Attribute.Required;
-    diagnosis: Schema.Attribute.String;
-    doctor: Schema.Attribute.String;
+    date_of_check: Schema.Attribute.Date &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    diagnosis: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    doctor: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     document: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::medical-information.medical-information'
-    > &
-      Schema.Attribute.Private;
-    medication: Schema.Attribute.String;
+    >;
+    medication: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     prescription: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
-    >;
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     profile_resident: Schema.Attribute.Relation<
       'manyToOne',
       'api::profile-resident.profile-resident'
@@ -528,9 +563,24 @@ export interface ApiProfileResidentProfileResident
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    address_kinds: Schema.Attribute.String;
-    address_parents: Schema.Attribute.String;
+    address_kinds: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    address_parents: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     assessment: Schema.Attribute.Relation<
       'manyToOne',
       'api::assessment.assessment'
@@ -538,7 +588,12 @@ export interface ApiProfileResidentProfileResident
     avatar: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
-    >;
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     branch: Schema.Attribute.Relation<'manyToOne', 'api::branch.branch'>;
     class: Schema.Attribute.Relation<'manyToOne', 'api::class.class'>;
     comments: Schema.Attribute.RichText &
@@ -547,29 +602,76 @@ export interface ApiProfileResidentProfileResident
         {
           preset: 'defaultHtml';
         }
-      >;
+      > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    date_of_birth: Schema.Attribute.Date;
-    date_of_registration: Schema.Attribute.Date & Schema.Attribute.Required;
-    Father_name: Schema.Attribute.String & Schema.Attribute.Required;
+    date_of_birth: Schema.Attribute.Date &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    date_of_registration: Schema.Attribute.Date &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Father_name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     gender: Schema.Attribute.Enumeration<['Boy', 'Girl']> &
-      Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::profile-resident.profile-resident'
-    > &
-      Schema.Attribute.Private;
+    >;
     medical_informations: Schema.Attribute.Relation<
       'oneToMany',
       'api::medical-information.medical-information'
     >;
-    Mother_name: Schema.Attribute.String & Schema.Attribute.Required;
-    name: Schema.Attribute.String;
-    nick_name: Schema.Attribute.String;
-    number: Schema.Attribute.BigInteger;
+    Mother_name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    nick_name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    number: Schema.Attribute.BigInteger &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     reports: Schema.Attribute.Relation<'oneToMany', 'api::report.report'>;
     resident_programs: Schema.Attribute.Relation<
