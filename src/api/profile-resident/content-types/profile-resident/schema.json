@@ -4,7 +4,7 @@
   "info": {
     "singularName": "profile-resident",
     "pluralName": "profile-residents",
-    "displayName": "Profile_Resident"
+    "displayName": "Kid Profile"
   },
   "options": {
     "draftAndPublish": true
@@ -15,15 +15,16 @@
     }
   },
   "attributes": {
-    "name": {
+    "full_name": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
-    "Mother_name": {
+    "mother_name": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -92,33 +93,18 @@
     },
     "branch": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::branch.branch",
-      "inversedBy": "profile_residents"
+      "relation": "oneToOne",
+      "target": "api::branch.branch"
     },
-    "assessment": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::assessment.assessment",
-      "inversedBy": "profile_residents"
-    },
-    "resident_programs": {
+    "assessments": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::resident-program.resident-program",
-      "mappedBy": "profile_resident"
-    },
-    "resident_relatives": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::resident-relative.resident-relative",
-      "mappedBy": "profile_resident"
+      "target": "api::assessment.assessment"
     },
     "reports": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::report.report",
-      "mappedBy": "profile_resident"
+      "target": "api::report.report"
     },
     "comments": {
       "type": "customField",
@@ -152,7 +138,7 @@
           "localized": true
         }
       },
-      "multiple": true,
+      "multiple": false,
       "allowedTypes": [
         "images",
         "files",
@@ -162,15 +148,13 @@
     },
     "class": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::class.class",
-      "inversedBy": "profile_residents"
+      "relation": "oneToOne",
+      "target": "api::class.class"
     },
     "medical_informations": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::medical-information.medical-information",
-      "mappedBy": "profile_resident"
+      "target": "api::medical-information.medical-information"
     }
   }
 }

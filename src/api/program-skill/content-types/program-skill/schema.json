@@ -11,12 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "program": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::program.program",
-      "inversedBy": "program_skills"
-    },
     "icon": {
       "type": "media",
       "multiple": false,

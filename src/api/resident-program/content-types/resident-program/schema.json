@@ -4,24 +4,22 @@
   "info": {
     "singularName": "resident-program",
     "pluralName": "resident-programs",
-    "displayName": "Resident Program"
+    "displayName": "Kid Program"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "programs": {
+    "kid_profile": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profile-resident.profile-resident"
+    },
+    "program_skills": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::program.program",
-      "mappedBy": "resident_program"
-    },
-    "profile_resident": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::profile-resident.profile-resident",
-      "inversedBy": "resident_programs"
+      "target": "api::program-skill.program-skill"
     }
   }
 }

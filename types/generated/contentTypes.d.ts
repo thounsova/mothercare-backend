@@ -376,7 +376,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiAssessmentAssessment extends Struct.CollectionTypeSchema {
   collectionName: 'assessments';
   info: {
-    displayName: 'Assessment';
+    displayName: 'Kid Assessment';
     pluralName: 'assessments';
     singularName: 'assessment';
   };
@@ -397,10 +397,6 @@ export interface ApiAssessmentAssessment extends Struct.CollectionTypeSchema {
       'api::assessment.assessment'
     > &
       Schema.Attribute.Private;
-    profile_residents: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::profile-resident.profile-resident'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -429,18 +425,10 @@ export interface ApiBranchBranch extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    profile_residents: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::profile-resident.profile-resident'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    users_permissions_users: Schema.Attribute.Relation<
-      'oneToMany',
-      'plugin::users-permissions.user'
-    >;
   };
 }
 
@@ -462,10 +450,6 @@ export interface ApiClassClass extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::class.class'> &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    profile_residents: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::profile-resident.profile-resident'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -477,7 +461,7 @@ export interface ApiMedicalInformationMedicalInformation
   extends Struct.CollectionTypeSchema {
   collectionName: 'medical_informations';
   info: {
-    displayName: 'Medical_information';
+    displayName: 'Kid Medical';
     pluralName: 'medical-informations';
     singularName: 'medical-information';
   };
@@ -541,10 +525,6 @@ export interface ApiMedicalInformationMedicalInformation
           localized: true;
         };
       }>;
-    profile_resident: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::profile-resident.profile-resident'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -556,7 +536,7 @@ export interface ApiProfileResidentProfileResident
   extends Struct.CollectionTypeSchema {
   collectionName: 'profile_residents';
   info: {
-    displayName: 'Profile_Resident';
+    displayName: 'Kid Profile';
     pluralName: 'profile-residents';
     singularName: 'profile-resident';
   };
@@ -581,21 +561,18 @@ export interface ApiProfileResidentProfileResident
           localized: true;
         };
       }>;
-    assessment: Schema.Attribute.Relation<
-      'manyToOne',
+    assessments: Schema.Attribute.Relation<
+      'oneToMany',
       'api::assessment.assessment'
     >;
-    avatar: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    > &
+    avatar: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    branch: Schema.Attribute.Relation<'manyToOne', 'api::branch.branch'>;
-    class: Schema.Attribute.Relation<'manyToOne', 'api::class.class'>;
+    branch: Schema.Attribute.Relation<'oneToOne', 'api::branch.branch'>;
+    class: Schema.Attribute.Relation<'oneToOne', 'api::class.class'>;
     comments: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -631,6 +608,13 @@ export interface ApiProfileResidentProfileResident
           localized: true;
         };
       }>;
+    full_name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     gender: Schema.Attribute.Enumeration<['Boy', 'Girl']> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -647,14 +631,8 @@ export interface ApiProfileResidentProfileResident
       'oneToMany',
       'api::medical-information.medical-information'
     >;
-    Mother_name: Schema.Attribute.String &
+    mother_name: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    name: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -674,14 +652,6 @@ export interface ApiProfileResidentProfileResident
       }>;
     publishedAt: Schema.Attribute.DateTime;
     reports: Schema.Attribute.Relation<'oneToMany', 'api::report.report'>;
-    resident_programs: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::resident-program.resident-program'
-    >;
-    resident_relatives: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::resident-relative.resident-relative'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -711,7 +681,6 @@ export interface ApiProgramSkillProgramSkill
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    program: Schema.Attribute.Relation<'manyToOne', 'api::program.program'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -723,7 +692,7 @@ export interface ApiProgramStatusProgramStatus
   extends Struct.CollectionTypeSchema {
   collectionName: 'program_statuses';
   info: {
-    displayName: 'Program_Status';
+    displayName: 'Program Status';
     pluralName: 'program-statuses';
     singularName: 'program-status';
   };
@@ -785,14 +754,6 @@ export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
       'api::program-skill.program-skill'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    resident_fields: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::resident-field.resident-field'
-    >;
-    resident_program: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::resident-program.resident-program'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -802,7 +763,7 @@ export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
 export interface ApiReportReport extends Struct.CollectionTypeSchema {
   collectionName: 'reports';
   info: {
-    displayName: 'Report';
+    displayName: 'Kid Report';
     pluralName: 'reports';
     singularName: 'report';
   };
@@ -820,10 +781,6 @@ export interface ApiReportReport extends Struct.CollectionTypeSchema {
       'api::report.report'
     > &
       Schema.Attribute.Private;
-    profile_resident: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::profile-resident.profile-resident'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     report_file: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
@@ -839,7 +796,7 @@ export interface ApiResidentFieldResidentField
   extends Struct.CollectionTypeSchema {
   collectionName: 'resident_fields';
   info: {
-    displayName: 'Resident_Field';
+    displayName: 'Kid Field';
     pluralName: 'resident-fields';
     singularName: 'resident-field';
   };
@@ -868,11 +825,15 @@ export interface ApiResidentFieldResidentField
       'api::resident-field.resident-field'
     > &
       Schema.Attribute.Private;
-    program: Schema.Attribute.Relation<'manyToOne', 'api::program.program'>;
+    program_status: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::program-status.program-status'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    validated_by: Schema.Attribute.String;
   };
 }
 
@@ -880,7 +841,7 @@ export interface ApiResidentProgramResidentProgram
   extends Struct.CollectionTypeSchema {
   collectionName: 'resident_programs';
   info: {
-    displayName: 'Resident Program';
+    displayName: 'Kid Program';
     pluralName: 'resident-programs';
     singularName: 'resident-program';
   };
@@ -891,90 +852,21 @@ export interface ApiResidentProgramResidentProgram
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    kid_profile: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::profile-resident.profile-resident'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::resident-program.resident-program'
     > &
       Schema.Attribute.Private;
-    profile_resident: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::profile-resident.profile-resident'
-    >;
-    programs: Schema.Attribute.Relation<'oneToMany', 'api::program.program'>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiResidentRelativeResidentRelative
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'resident_relatives';
-  info: {
-    displayName: 'resident_relative';
-    pluralName: 'resident-relatives';
-    singularName: 'resident-relative';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    date: Schema.Attribute.Date;
-    full_name: Schema.Attribute.String & Schema.Attribute.Required;
-    gender: Schema.Attribute.Enumeration<['Man', 'Woman']> &
-      Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
+    program_skills: Schema.Attribute.Relation<
       'oneToMany',
-      'api::resident-relative.resident-relative'
-    > &
-      Schema.Attribute.Private;
-    profile_resident: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::profile-resident.profile-resident'
+      'api::program-skill.program-skill'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    resident_type: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::resident-typ.resident-typ'
-    >;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiResidentTypResidentTyp extends Struct.CollectionTypeSchema {
-  collectionName: 'resident_typs';
-  info: {
-    displayName: 'resident_type';
-    pluralName: 'resident-typs';
-    singularName: 'resident-typ';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::resident-typ.resident-typ'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    resident_relatives: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::resident-relative.resident-relative'
-    >;
-    type: Schema.Attribute.Enumeration<['Educator', 'Parent']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1443,7 +1335,7 @@ export interface PluginUsersPermissionsUser
       true
     >;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    branch: Schema.Attribute.Relation<'manyToOne', 'api::branch.branch'>;
+    branch: Schema.Attribute.Relation<'oneToOne', 'api::branch.branch'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
@@ -1505,8 +1397,6 @@ declare module '@strapi/strapi' {
       'api::report.report': ApiReportReport;
       'api::resident-field.resident-field': ApiResidentFieldResidentField;
       'api::resident-program.resident-program': ApiResidentProgramResidentProgram;
-      'api::resident-relative.resident-relative': ApiResidentRelativeResidentRelative;
-      'api::resident-typ.resident-typ': ApiResidentTypResidentTyp;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

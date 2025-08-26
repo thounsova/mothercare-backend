@@ -4,7 +4,7 @@
   "info": {
     "singularName": "program-status",
     "pluralName": "program-statuses",
-    "displayName": "Program_Status"
+    "displayName": "Program Status"
   },
   "options": {
     "draftAndPublish": true

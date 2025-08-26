@@ -13,12 +13,6 @@
   "attributes": {
     "name": {
       "type": "string"
-    },
-    "profile_residents": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::profile-resident.profile-resident",
-      "mappedBy": "class"
     }
   }
 }

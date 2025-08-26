@@ -68,9 +68,8 @@
     },
     "branch": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::branch.branch",
-      "inversedBy": "users_permissions_users"
+      "relation": "oneToOne",
+      "target": "api::branch.branch"
     },
     "avatar": {
       "type": "media",

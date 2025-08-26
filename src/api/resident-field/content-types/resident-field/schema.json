@@ -4,7 +4,7 @@
   "info": {
     "singularName": "resident-field",
     "pluralName": "resident-fields",
-    "displayName": "Resident_Field"
+    "displayName": "Kid Field"
   },
   "options": {
     "draftAndPublish": true
@@ -13,12 +13,6 @@
   "attributes": {
     "activity_date": {
       "type": "date"
-    },
-    "program": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::program.program",
-      "inversedBy": "resident_fields"
     },
     "activity_upload": {
       "type": "media",
@@ -37,6 +31,14 @@
       "options": {
         "preset": "defaultHtml"
       }
+    },
+    "program_status": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::program-status.program-status"
+    },
+    "validated_by": {
+      "type": "string"
     }
   }
 }
