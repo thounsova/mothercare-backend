@@ -601,6 +601,10 @@ export interface ApiProfileResidentProfileResident
           localized: true;
         };
       }>;
+    educator_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     Father_name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -650,6 +654,10 @@ export interface ApiProfileResidentProfileResident
           localized: true;
         };
       }>;
+    parent_users: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     reports: Schema.Attribute.Relation<'oneToMany', 'api::report.report'>;
     updatedAt: Schema.Attribute.DateTime;

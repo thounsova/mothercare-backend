@@ -155,6 +155,16 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::medical-information.medical-information"
+    },
+    "educator_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "parent_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
