@@ -39,6 +39,16 @@
     },
     "validated_by": {
       "type": "string"
+    },
+    "program_skill": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::program-skill.program-skill"
+    },
+    "kid_profile": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profile-resident.profile-resident"
     }
   }
 }

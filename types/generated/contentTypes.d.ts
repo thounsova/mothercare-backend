@@ -827,12 +827,20 @@ export interface ApiResidentFieldResidentField
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    kid_profile: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::profile-resident.profile-resident'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::resident-field.resident-field'
     > &
       Schema.Attribute.Private;
+    program_skill: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::program-skill.program-skill'
+    >;
     program_status: Schema.Attribute.Relation<
       'oneToOne',
       'api::program-status.program-status'
